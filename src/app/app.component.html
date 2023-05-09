@@ -1,0 +1,13 @@
+<div>
+  <div class="max-w-2xl container mx-auto pt-5">
+    <input type="text" class="mb-2 border border-black py-2 px-4 w-full " placeholder="Searching..."  [(ngModel)]="term" />
+    <p *ngIf="isLoading" class="text-center text-lg">Loading...</p>
+    <app-product *ngFor="let product of configService.products | filterProducts: term  " [product]="product" ></app-product>
+  </div>
+
+  <app-modal title="Create product" *ngIf="modalService.isVisible | async " >
+    <app-product-create></app-product-create>
+  </app-modal>
+  <button (click)="modalService.open()" class="rounded-full bg-red-700 fixed py-2 px-4 text-white right-5 bottom-5" >+</button>
+
+</div>
